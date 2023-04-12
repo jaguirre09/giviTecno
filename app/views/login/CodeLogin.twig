@@ -1,0 +1,71 @@
+{% extends 'Welcome.twig' %}
+
+{% block content %}
+    <style>
+        header {
+            display: none;
+        }
+
+        .footer {
+            display: none;
+        }
+
+        .container-startup {
+            padding-top: 0px;
+        }
+    </style>
+
+    <div class="space_Container login-contend">
+
+    <div class="login_user">
+        <div class="campo_titulo">
+            <div class="title_1">
+               Confirmar Cuenta
+            </div>
+        </div>
+
+        <div class="container-startup">
+            <div class="gridStartup">
+
+                <div class="background-Code">
+                </div>
+
+                <div class="centerRegistro">
+                    <div class="form-previewStartup_1">
+                        <div class="loginContents">
+                            {% if valido != 1 %}
+                                <div class="nameCode">{{ session.name }}</div>
+                                Se envío un correo con un id al correo <font color="FF484F">{{ session.email }}</font>
+                                <br><br>
+                                <form action="#" method="post">
+
+                                    <label for="validar">Código de confirmación</label>
+                                    <input type="number" name="validar" id="validar" class="form-control">
+
+                                    {% if session.nivel == 2 %}
+                                        <input type="submit" class="btn btn-primary" placeholder="Código enviado al correo"
+                                               name="verify" value="Verificar código">
+                                    {% else %}
+                                        <br>
+                                        <input type="submit" class="btn btn-primary" placeholder="Código enviado al correo"
+                                               name="validar_investor" value="Verificar código">
+                                    {% endif %}
+
+                                    {% if estados == "Incorrecto" %}
+                                        <div class="estadoIncorrecto">Código {{ estados }}</div>
+                                    {% elseif estados == 'Continuar' %}
+
+                                        <div>Cuenta creada con Éxito, inicia sesión para continuar</div>
+                                        <div class="btnC">
+                                            <a href="/destroy" class="btn-Continuar"><b>Iniciar sesión</b></a>
+                                        </div>
+                                    {% endif %}
+                                </form>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

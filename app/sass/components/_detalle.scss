@@ -1,0 +1,53 @@
+/*
+ * _detalle.scss
+ * Created by juandavidaguirrecamargo
+ * 27/03/2023 19:46:27
+ */
+.space_Container {
+  margin-top: 5vw;
+}
+
+.scrollImg {
+  height: 80vh;
+  overflow: scroll;
+  width: 100%;
+}
+
+.image-container {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  overflow: hidden;
+}
+
+.zoom-container {
+  overflow: scroll;
+  width: 90%;
+  height: 50vh;
+  margin: 2vw auto;
+}
+
+.zoom-img {
+  cursor: zoom-in;
+  width: 100%;
+  transition: 0.5s;
+}
+
+.zoom-container:hover .zoom-img {
+  transform: scale(1.3) translate(5%, 5%);
+  transition: 0.5s;
+  transform-origin: center;
+}
+
+#img-magnifier-glass {
+  position: absolute;
+  border: 3px solid #000;
+  border-radius: 50%;
+  cursor: none;
+  width: 100px;
+  height: 100px;
+}
+
+.detalle_img{
+  cursor: pointer;
+}

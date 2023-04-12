@@ -1,0 +1,14 @@
+/*
+ * _cart.scss
+ * Created by juandavidaguirrecamargo
+ * 06/03/2023 13:36:14
+ */
+
+.containerCart{
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+}
+
+.totalP{
+  border: 0;
+}

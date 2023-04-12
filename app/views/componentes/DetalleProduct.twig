@@ -1,0 +1,89 @@
+{% extends 'Welcome.twig' %}
+
+{% block content %}
+
+    <div class="container space_Container">
+
+
+        {% for p in detalle %}
+
+            <div class="row border-primary">
+                <div class="col-12">
+                    <div class="text-center">
+                        <div class="campo_titulo">
+                            <div class="title_1">
+                                {{ p.Categoria }}
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-2">
+
+                    {% set img = p.Imagenes|split('.') %}
+
+
+                    <div class="scrollImg">
+                        <img src="https://recursos.mps.com.co/images/Productos/{{ img|first }}.{{ img|last }}"
+                             class="d-block w-100 detalle_img" alt="..." onerror="this.style.display = 'none'">
+
+                        <img src="https://recursos.mps.com.co/images/Productos/{{ img|first }}_1.{{ img|last }}"
+                             class="d-block w-100 detalle_img" alt="..." onerror="this.style.display = 'none'">
+
+                        <img src="https://recursos.mps.com.co/images/Productos/{{ img|first }}_2.{{ img|last }}"
+                             class="d-block w-100 detalle_img" alt="..." onerror="this.style.display = 'none'">
+                    </div>
+
+                </div>
+
+                <div class="col-10" style="display: grid;grid-template-columns: 1fr 1fr">
+
+                    <div id="img_detalle" class="zoom-container">
+
+
+                        <img src="https://recursos.mps.com.co/images/Productos/{{ img|first }}.{{ img|last }}"
+                             class="zoom-img" alt="..." onerror="this.style.display = 'none'">
+
+                    </div>
+
+                    <div class="card-body">
+                        <h5 class="card-title">{{ p.Name }}</h5>
+                        <p>{{ p.Quantity }} {{ p.precio }}</p>
+                        <p class="card-text">{{ p.Description }}</p>
+                        <a href="/Card?cart={{ p.PartNum }}&id={{ p.id }}" class="btn btn-primary">Agregar al
+                            Carrito</a>
+                    </div>
+                </div>
+            </div>
+
+
+
+        {% endfor %}
+
+    </div>
+    <script>
+
+        const imagenes = document.getElementsByClassName('detalle_img');
+        const imagen = document.querySelector('.zoom-container');
+        const imgZoom = imagen.querySelector('.zoom-img');
+
+        for (let i = 0; i < imagenes.length; i++) {
+            imagenes[i].addEventListener('click', function () {
+                imgZoom.removeAttribute('id');// Elimina el id anterior
+                imgZoom.src = imagenes[i].src;
+
+                imgZoom.alt = imagenes[i].alt;
+                imagen.classList.add('active');
+                magnify('myimage' + [i], 3);
+            });
+
+        }
+    </script>
+
+    <script>
+
+    </script>
+
+
+
+{% endblock %}

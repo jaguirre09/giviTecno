@@ -1,0 +1,21 @@
+/*
+ * _js.scss
+ * Created by juandavidaguirrecamargo
+ * 09/03/2023 18:28:50
+ */
+
+#js-none-menu_3 {
+  display: flex;
+  transition: opacity 0.3s ease-in-out; /* suaviza la transición */
+}
+
+.oculto {
+  display: none!important;
+}
+
+.js-Can{
+  text-align: right;
+  width: 44px;
+  height: 38px;
+  vertical-align: top;
+}

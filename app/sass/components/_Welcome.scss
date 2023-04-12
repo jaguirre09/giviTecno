@@ -1,0 +1,178 @@
+/*
+ * _Welcome.scss
+ * Created by juandavidaguirrecamargo
+ * 08/03/2023 20:36:44
+ */
+
+
+.w-60 {
+  width: 50% !important;
+  mix-blend-mode: multiply;
+  filter: brightness(1);
+}
+
+.btn-color-blue {
+  background-color: #0A3B9C !important;
+  color: white !important;
+  font-size: 20px !important;
+}
+
+.carousel-item {
+  height: 80vh;
+  text-align: -webkit-center !important;
+  //background: rgb(0,156,140);
+  //background: linear-gradient(142deg, rgba(0,156,140,1) 0%, rgba(255,255,255,1) 14%, rgba(0,156,140,0.676908263305322) 23%, rgba(0,156,140,0) 24%, rgba(41,73,206,0) 73%, rgba(41,73,206,0.7049194677871149) 74%, rgba(255,255,255,1) 86%, rgba(41,73,206,1) 100%);
+  background-image: url("../assets/img/fondo.png");
+  background-position: bottom;
+  background-size: cover;
+}
+
+.carousel-inner {
+  height: 80vh !important;
+}
+
+
+.campo_titulo {
+
+  text-align: center;
+
+  .title_1 {
+    padding: 50px 0;
+    color: #0A3B9C;
+    font-size: 30px;
+  }
+
+  .title_3 {
+    margin: 50px 0;
+    color: #009C8C;
+    font-size: 30px;
+  }
+
+  .title_2 {
+    padding: 50px 0;
+    color: white;
+    font-size: 40px;
+  }
+
+}
+
+.gridMarcas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+
+  :hover {
+    background-color: #009C8C;
+    z-index: 1;
+  }
+}
+
+
+.gridDestacado {
+  margin: 0 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 20px;
+}
+
+
+.marcas {
+  background-color: #0a3b9c;
+  color: #fff;
+  padding: 10px;
+  font-size: 20px;
+  border-radius: 8px;
+
+  .btn_text {
+    color: white;
+    border: 0;
+    background-color: transparent;
+  }
+}
+
+.vendido {
+  margin: 70px 0;
+  padding: 10px 0;
+  background: rgb(41, 73, 206);
+  background: linear-gradient(27deg, rgba(41, 73, 206, 1) 49%, rgba(0, 156, 140, 1) 89%);
+}
+
+.Cuenta-welcome {
+  margin: 10% 0;
+  height: 20%;
+  background-image: url("../assets/img/tecno.jpeg");
+  background-position: center;
+
+  .bg-wel {
+    padding: 7%;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(10, 59, 156, 0.43);
+
+    .title_4{
+      color: white;
+      font-size: 30px;
+    }
+
+  }
+
+
+  .inputEmailWelcome {
+    height: 40px;
+    padding-left: 12px;
+    width: 50%;
+    border-radius: 8px;
+  }
+}
+
+
+.infoProduct {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  margin: 10%;
+  gap: 5%;
+
+
+  .circle {
+    border-radius: 50%;
+    text-align: center;
+    background-color: rgba(170, 181, 197, 0.74);
+    padding: 40px 0;
+  }
+
+}
+
+.Metodos{
+  height: 50%;
+  background-color: #009C8C;
+}
+
+
+.imgMarca{
+  display: grid;
+  gap: 60px 10px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.hide {
+  display: none;
+}
+
+.elemento{
+
+  width: 100%;
+}
+
+.position{
+  padding: 30px 0;
+  align-self: center;
+
+}
+
+#img_id {
+  opacity: 0; /* Los divs comienzan totalmente transparentes */
+  transition: opacity 1s; /* La transición dura 1 segundo */
+}
+
+#mi-div.elemento {
+  opacity: 1; /* Cuando se agrega la clase "mostrar", el div se vuelve opaco */
+}

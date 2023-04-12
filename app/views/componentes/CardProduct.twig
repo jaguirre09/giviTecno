@@ -1,0 +1,104 @@
+{% extends 'Welcome.twig' %}
+
+{% block content %}
+
+    <div class="containerCart space_Container">
+
+        <div>
+            {% set total = 0 %}
+            {% for p in detalle %}
+
+                <div class="row border-primary display">
+                    <div class="col-10">
+                        <div class="text-center">
+
+                            <div class="campo_titulo">
+                                <div class="title_1">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3" style="text-align: center;">
+                        <img src="https://recursos.mps.com.co/images/Productos/{{ p.Imagenes }}" class="d-block w-100"
+                             alt="..." onerror="this.style.display = 'none'">
+
+                    </div>
+                    <div class="col-6" style="align-self: center">
+                        <div class="card-body">
+
+                            <div style="display: grid; grid-template-columns: 1fr 50px">
+                                <div style="margin: 0 0 20px 0">
+                                    <h5 class="card-title">{{ p.NameProducts }}</h5>
+                                </div>
+                                <div>
+                                    <a href="?delete={{ p.PartNum }}" class="btn btn-danger js_delete_cart"
+                                       data-delete="{{ p.PartNum }}">
+                                        <i class="bi bi-trash"></i>
+                                    </a>
+                                </div>
+                            </div>
+
+
+                            <button class="min-count ct btn btn-outline-success" id="{{ p.PartNum }}"><i
+                                        class="bi bi-file-minus-fill"></i></button>
+
+                            <input type="number" data-precio="{{ p.precio }}" id="js-p{{ p.PartNum }}" name="precio"
+                                   readonly value="1" class="js-Can">
+
+                            <button class="max-count ct btn btn-outline-success" id="{{ p.PartNum }}"><i
+                                        class="bi bi-plus-square-fill"></i>
+                            </button>
+
+
+                            <br><br>
+
+                            {{ p.Quantity }} <input class="idP" value="{{ p.id }}" type="hidden" readonly>
+
+
+                            <input id="subTotal{{ p.PartNum }}" class="js-total totalP" value="{{ p.precio }}" readonly>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+            {% endfor %}
+
+            {% set miArray = detalle %}
+        </div>
+
+        <div style="padding: 40% 10%">
+            <div class="space_Container">
+                <table class="table table-light">
+                    <thead>
+                    <tr class="text-center">
+                        <th scope="col">Total</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row" style="display: flex">USD
+                            <div id="total" style="margin-left: 20px">{{ total }}</div>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th scope="row">
+                            <button id="js-check" class="btn btn-primary" style="width: 100%">Comprar</button>
+                        </th>
+                    </tr>
+                    </tbody>
+                </table>
+
+
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        miArray = {{ miArray|json_encode|raw }};
+    </script>
+
+{% endblock %}

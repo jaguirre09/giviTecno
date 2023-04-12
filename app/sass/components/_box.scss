@@ -1,0 +1,62 @@
+/*
+ * _box.scss
+ * Created by juandavidaguirrecamargo
+ * 26/02/2023 03:40:01
+ */
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  margin: 20px;
+  gap: 20px;
+}
+
+
+#result {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 300px));
+  grid-template-rows: min-content;
+  gap: 20px;
+}
+
+
+.card-text {
+  height: 80px;
+  color: #6e7271;
+  overflow: scroll;
+}
+
+.price_USD {
+  color: #f5791d;
+}
+
+.size_1 {
+  text-align: center;
+  height: 60px;
+  overflow: scroll;
+  padding: 18px;
+}
+
+.card-title {
+  height: 70px;
+  overflow: scroll;
+}
+
+.btnCategory{
+  background-color: transparent;
+  color: white;
+  border: 0;
+  width: 100%;
+}
+
+.searchCategory{
+
+  border: 0;
+  background-color: transparent;
+  font-size: 18px;
+
+  display: grid;
+  color: darkgray;
+  text-align: left;
+
+}

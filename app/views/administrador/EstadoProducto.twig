@@ -1,0 +1,107 @@
+{% extends "administrador/Home.twig" %}
+
+{% block contentAdmin %}
+
+
+    <div class="campo_titulo">
+        <div class="title_1">Productos adquiridos </div>
+    </div>
+
+    <div class="container">
+
+        <div class="accordion accordion-flush" id="accordionFlushExample">
+
+            {% set count = 0 %}
+            {% for p in product %}
+                {% set count = count + 1 %}
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+
+                        <button class="accordion-button collapsed Js_toggle" type="button" data-product="{{ p.id }}">
+                            {{ p.NameProducts }}
+                        </button>
+                    </h2>
+                    {% if p.id == 50 %}
+
+                        <div class="accordion-collapse"
+                             data-bs-parent="#accordionFlushExample{{ count }}">
+                            <div class="accordion-body">
+
+                                <table class="table table-success table-striped-columns">
+                                    <thead>
+                                    <tr>
+                                        <th colspan="5" class="text-center text-secondary fs-5">API</th>
+                                    </tr>
+                                    <tr>
+                                        <th scope="col">Cantidad</th>
+                                        <th scope="col">Precio</th>
+                                        <th scope="col">Subtotal</th>
+                                        <th scope="col">Estado</th>
+                                        <th scope="col">Numero Producto</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody class="table-group-divider">
+                                    <tr>
+                                        <td class="table-secondary">{{ p.cantidad }}</td>
+                                        <td class="table-secondary">{{ p.precio }}</td>
+                                        <td class="table-secondary"> {{ p.subtotal }}</td>
+                                        <td class="table-secondary"> {{ p.numValor }}</td>
+                                        <td class="table-secondary"> {{ p.numProduct }}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+
+
+                                <table class="table table-primary table-striped-columns">
+                                    <thead>
+                                    <tr>
+                                        <th colspan="4" class="text-center text-secondary fs-5">WOMPI</th>
+                                    </tr>
+                                    <tr>
+                                        <th scope="col">Total</th>
+                                        <th scope="col">Fecha</th>
+                                        <th scope="col">Estado</th>
+                                        <th scope="col">ID Venta</th>
+
+                                    </tr>
+                                    </thead>
+                                    <tbody class="table-group-divider">
+                                    <tr>
+                                        <td class="table-secondary">{{ p.total }}</td>
+                                        <td class="table-secondary">{{ p.fecha }}</td>
+                                        <td class="table-secondary"> {{ p.status }}</td>
+                                        <td class="table-secondary"> {{ p.id_venta }}</td>
+
+                                    </tr>
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+
+                    {% endif %}
+
+                </div>
+
+            {% endfor %}
+        </div>
+
+    </div>
+
+
+    <script type="text/javascript">
+
+
+        const Js_toggle = document.querySelectorAll('.Js_toggle');
+
+        for (let i = 0; i < Js_toggle.length; i++) {
+            Js_toggle[i].addEventListener('click', function () {
+                const JS = this.dataset.product;
+                console.log(JS);
+            });
+        }
+    </script>
+
+
+{% endblock %}
+

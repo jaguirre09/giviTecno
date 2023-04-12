@@ -1,0 +1,57 @@
+{% extends 'Welcome.twig' %}
+
+{% block content %}
+    <style>
+        header {
+            display: none;
+        }
+
+        .footer {
+            display: none;
+        }
+    </style>
+
+
+
+    <div class="login-contend">
+
+        <div class="login_user">
+            <div class="campo_titulo">
+                <div class="title_1">
+                    <img src="{{ getAssets('img/logo.png') }}" alt="Tienda">
+                </div>
+            </div>
+            <div class="campo_titulo" style="text-align: left">
+                <div class="title_1" style="padding: 0 0 20px 0">
+                    Login
+                </div>
+            </div>
+            <form method="post" action="#">
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Email address</label>
+                    <input type="email" name="userName" class="form-control" id="exampleInputEmail1"
+                           aria-describedby="emailHelp">
+                    <div id="emailHelp" class="form-text"></div>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Password</label>
+                    <input type="password" name="userPass" class="form-control" id="exampleInputPassword1">
+                </div>
+                <button type="submit" class="btn btn-primary" name="submitLogin">Login</button>
+
+                <a href="/Registro" style="float: right;text-decoration: none">Registrate</a>
+
+                {{ estado }}
+                {{ error }}
+            </form>
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+{% endblock %}

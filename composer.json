@@ -1,0 +1,73 @@
+{
+  "name": "oneago/arcturus-project",
+  "description": "Arcturus project is an Oneago open source project for easy and quick php projects",
+  "type": "project",
+  "keywords": ["arcturus", "oneago", "php", "basic", "template", "project", "sass", "docker", "framework", "sass", "angular", "typescript"],
+  "license": "GPL-3.0-only",
+  "authors": [
+    {
+      "name": "jruedaq",
+      "email": "jrueda@oneago.com",
+      "homepage": "https://www.juandavid.dev",
+      "role": "Developer"
+    },
+    {
+      "name": "jyarar",
+      "email": "jyara@oneago.com",
+      "homepage": "https://www.jairyara.com",
+      "role": "Developer"
+    },
+    {
+      "name": "Oneago",
+      "email": "support@oneago.com",
+      "homepage": "https://www.oneago.com/",
+      "role": "Maintainer"
+    }
+  ],
+  "require": {
+    "php": ">=8.0",
+    "ext-pdo": "*",
+    "ext-zip": "*",
+    "twig/twig": "^3.3",
+    "symfony/twig-bridge": "^6.1",
+    "robmorgan/phinx": "^0.12",
+    "vlucas/phpdotenv": "^5.3",
+    "oneago/arcturus-core": "^5.1",
+    "ext-curl": "*",
+    "twbs/bootstrap-icons": "^1.10",
+    "google/apiclient": "^2.12.1",
+    "phpmailer/phpmailer": "^6.8.0",
+    "ext-http": "*",
+    "ext-mysql_xdevapi": "*"
+  },
+  "require-dev": {
+    "roave/security-advisories": "dev-latest",
+    "filp/whoops": "^2.14",
+    "phpunit/phpunit": "^9.5",
+    "symfony/console": "^6.1",
+    "fakerphp/faker": "^1.13",
+    "symfony/var-dumper": "^6.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "App\\Config\\": "config/",
+      "App\\": "app/"
+    },
+    "files": [
+      "app/functions.php"
+    ]
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "App\\Tests\\": "tests/"
+    }
+  },
+  "scripts": {
+    "post-install-cmd": [
+      "@postInstall"
+    ],
+    "postInstall": [
+      "php postinit"
+    ]
+  }
+}

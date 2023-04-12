@@ -1,0 +1,49 @@
+version: '3'
+
+services:
+  webserver:
+    build:
+      context: .
+    ports:
+      - "8080:80"
+      - "4430:443"
+    links:
+      - database
+    volumes:
+      - ./public_html:/var/www/html
+      - ./:/var/www
+    environment:
+      PMA_PORT: 8081
+  database:
+    image: mysql:latest
+    ports:
+      - "127.0.0.1:9906:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: ${DEBUG_DB_NAME}
+      MYSQL_USER: ${DEBUG_DB_USER}
+      MYSQL_PASSWORD: ${DEBUG_DB_PASS}
+  phpmyadmin:
+    image: phpmyadmin
+    links:
+      - database
+    environment:
+      PMA_HOST: database
+      PMA_PORT: 3306
+      PMA_USER: root
+      PMA_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: ${DEBUG_DB_USER}
+      MYSQL_PASSWORD: ${DEBUG_DB_PASS}
+    ports:
+      - '8081:80'
+  seeder:
+    build:
+      context: .
+    depends_on:
+      - database
+    command: sh -c "sleep 18 && vendor/bin/phinx migrate -e development && vendor/bin/phinx seed:run -e development"
+    volumes:
+      - ./:/var/www/html/
+    stdin_open: true
+    tty: true

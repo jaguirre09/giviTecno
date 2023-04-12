@@ -1,0 +1,101 @@
+{% extends 'Welcome.twig' %}
+
+
+
+{% block content %}
+
+
+    <div style="margin-top: 150px">
+        <div class="campo_titulo">
+            <div class="title_1">Productos</div>
+        </div>
+
+        <div class="grid">
+
+            <div style="">
+
+
+                <div>
+                    <div class="marcas">
+
+                        <button id="preview_category" class="btnCategory">Categorías</button>
+
+
+                        <div id="preview_c" style="display: none">
+                            {% for c in category %}
+                                <button class="js-category searchCategory" data-category="{{ c }}">{{ c|capitalize }}</button>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <br>
+                    <div class="marcas">
+
+                        <button id="preview_marks" class="btnCategory">Marcas</button>
+
+
+                        <div id="preview_m" style="display: none">
+                            {% for m in marcas %}
+                                <button class="js-marcas searchCategory" data-marca="{{ m }}">{{ m }}</button>
+                            {% endfor %}
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+            <div id="result"></div>
+
+
+        </div>
+        <div style="display:grid;">
+            <div style="place-self: center;">
+                <nav aria-label="..." class="pagination-nav">
+                    <ul class="pagination">
+                        <li class="page-item">
+                            {% if maxmin <= 1 %}
+                                <a class="page-link disabled" id="paginacion_min"
+                                   href="/Productos?pagina={{ maxmin -1 }}">Anterior</a>
+                            {% else %}
+                                <a class="page-link" href="/Productos?pagina={{ maxmin -1 }}">Anterior</a>
+                            {% endif %}
+                        </li>
+                        {% for p in range(1, pagination) %}
+
+
+                            <li class="page-item">
+                                {% if maxmin == p %}
+                                    <a class="page-link active" data-pagina="{{ p }}"
+                                       href="/Productos?pagina={{ p }}">{{ p }}</a>
+                                {% else %}
+                                    <a class="page-link" data-pagina="{{ p }}"
+                                       href="/Productos?pagina={{ p }}">{{ p }}</a>
+                                {% endif %}
+                            </li>
+                            {% set max = p %}
+                        {% endfor %}
+                        <li class="page-item">
+                            {% if maxmin >= pagination %}
+                                <a class="page-link disabled">Siguiente</a>
+                            {% else %}
+                                <a class="page-link" href="/Productos?pagina={{ maxmin +1 }}">Siguiente</a>
+                            {% endif %}
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+
+    {% set Product = Productos %}
+
+    <script>
+        Productos = {{ Product|json_encode|raw }};
+    </script>
+
+    <script src="{{ getJs('componentsProduct.js') }}"></script>
+{% endblock %}

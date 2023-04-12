@@ -1,0 +1,53 @@
+#!/usr/bin/env php
+<?php
+
+
+use Symfony\Component\Console\Application;
+use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
+
+require __DIR__ . '/vendor/autoload.php';
+
+class DefaultCommand extends Command
+{
+    protected static $defaultName = 'postinit';
+
+    protected function configure(): void
+    {
+        $this->setDescription('Config project');
+    }
+
+    protected function execute(InputInterface $input, OutputInterface $output): int
+    {
+        if (!file_exists("db") && !mkdir("db") && !is_dir("db")) {
+            throw new RuntimeException(sprintf('Directory "%s" was not created', "db"));
+        }
+        if (!file_exists("db/migrations") && !mkdir("db/migrations") && !is_dir("db/migrations")) {
+            throw new RuntimeException(sprintf('Directory "%s" was not created', "db/migrations"));
+        }
+        if (!file_exists("db/seeds") && !mkdir("db/seeds") && !is_dir("db/seeds")) {
+            throw new RuntimeException(sprintf('Directory "%s" was not created', "db/seeds"));
+        }
+        if (!file_exists(".env")) {
+            copy(".env.example", ".env");
+        }
+        if (!is_dir(".git")) {
+            exec("git init");
+        }
+        exec("git add .");
+        exec("npm install");
+        exec("php ada sass:compile");
+        exec("php ada tsc:compile");
+        return self::SUCCESS;
+    }
+}
+
+$command = new DefaultCommand();
+$application = new Application();
+
+$application->add($command);
+$application->setDefaultCommand($command->getName());
+
+/** @noinspection PhpUnhandledExceptionInspection */
+$application->run();

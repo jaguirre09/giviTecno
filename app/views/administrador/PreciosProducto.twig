@@ -1,0 +1,73 @@
+{% extends "administrador/Home.twig" %}
+
+{% block contentAdmin %}
+
+
+
+
+
+
+
+    <table class="table table-success table-striped-columns">
+        <thead>
+        <tr>
+            <th colspan="5" class="text-center text-secondary fs-5">Precios</th>
+        </tr>
+
+        <tr>
+            <th scope="col">Categoría</th>
+
+            <th scope="col">% Actual</th>
+            <th scope="col">Guardar</th>
+        </tr>
+        </thead>
+        <tbody class="table-group-divider">
+        <form action="#" method="post">
+
+            <tr class="">
+                <td class="table-info">
+                    Ingrese el percentage a cambiar
+                </td>
+
+                <td class="table-info">
+                    <label>
+                        <input type="number" name="nuevoValor" min="1" max="100" style="width: 50px;">
+                    </label>%
+                </td>
+                <td class="table-info"></td>
+
+            </tr>
+            {% for c in category %}
+                {% set array = c|split(',') %}
+                {% set categoria = array[0] %}
+                {% set porcentaje = array[1] %}
+
+
+                <tr>
+
+
+                    <td class="table-secondary">
+                        <input type="text" name="category" value="{{ categoria }}" readonly style="width: 100%; background-color: transparent; border: 0;">
+                    </td>
+
+                    <td class="table-secondary">
+                        {{ porcentaje }}%
+                    </td>
+                    <td class="table-secondary">
+                        <button type="submit" name="updatePrice" value="{{ categoria }}"
+                                onclick="this.form.elements.updateValue.value = this.form.elements.nuevoValor.value">
+                            <i class="bi bi-save2-fill"></i>
+                        </button>
+                        <input type="hidden" name="updateValue">
+                    </td>
+
+
+                </tr>
+            {% endfor %}
+        </form>
+        </tbody>
+    </table>
+
+
+
+{% endblock %}

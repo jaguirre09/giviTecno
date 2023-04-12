@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!--Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="{{ getCss('style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <script src="https://code.jquery.com/jquery-3.6.3.js"
+            integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+    <title>{{ title }}</title>
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+</head>
+
+<body>
+
+<article class="main">
+
+
+    <header>
+        <div class="header_1">
+            <div>
+                <a class="navbar-brand align-self-center logo-header-bg" href="/">
+                    <img src="{{ getAssets('img/logo.png') }}" alt="" class="logo-header">
+                </a>
+            </div>
+
+
+            <div class="search_form">
+                <form class="d-flex" role="search" action="/Productos" method="post">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
+                           id="js_search">
+                    <button class="btn btn-outline-success" type="submit" name="searchAvance"><i class="bi bi-send-fill"></i>
+                    </button>
+                </form>
+            </div>
+
+            <div class="login">
+
+                {{ usuario.email }}
+
+                {% if usuario.email is empty %}
+                    <button type="button" class="btn " style="font-size: 18px" onclick="location.href = '/Entrar'"><i
+                                class="bi bi-person-heart"></i> &#160;Login
+                    </button>
+                {% else %}
+                    <button type="button" class="btn " style="font-size: 18px"
+                            onclick="location.href = '/Cerrar-cuenta'"><i
+                                class="bi bi-person-heart"></i> &#160;Cerrar
+                    </button>
+                {% endif %}
+
+
+            </div>
+
+
+        </div>
+
+
+        <div class="header">
+
+
+            <div>
+
+                <nav class="navbar navbar-expand-lg br-btt">
+                    <div class="container-fluid">
+
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                                aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                <li class="nav-item bd-left-nav">
+                                    <a class="menu-superior" aria-current="page" href="/">Categoría</a>
+                                </li>
+                                <li class="nav-item bd-left-nav">
+                                    <a class="menu-superior" aria-current="page" href="#">Marcas</a>
+                                </li>
+                                <li class="nav-item bd-left-nav">
+                                    <a class="menu-superior" aria-current="page" href="#">Ofertas</a>
+                                </li>
+                                <li class="nav-item bd-left-nav">
+                                    <a class="menu-superior active" aria-current="page" href="#">Blog</a>
+                                </li>
+                                <li class="nav-item bd-left-nav">
+                                    <a class="menu-superior active" aria-current="page" href="#">Contacto</a>
+                                </li>
+
+                                <li>
+                                    <a href="/Card">
+                                        <img src="{{ getAssets('img/card.png') }}" alt="" class="logo-card">
+                                    </a>
+
+                                </li>
+                            </ul>
+
+
+                        </div>
+
+                    </div>
+                </nav>
+                <ul class="nav nav-tabs " style="background-color: #2949CE;padding: 8px 0 0 0!important;"
+                    id="js-none-menu_3">
+                    <li class="nav-item js-menu-sub">
+                        <a class="nav-link" id="m1" aria-current="page" href="#">
+                        <span style="vertical-align: inherit;">
+                            <span style="vertical-align: inherit;">
+                             <i class="bi bi-bookmark-heart-fill"></i>Categoría
+                            </span>
+                        </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Productos">
+                            <font style="vertical-align: inherit;"><font
+                                        style="vertical-align: inherit;"><i class="bi bi-box2-heart-fill"></i>&#160;Productos</font></font></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><font style="vertical-align: inherit;"><font
+                                        style="vertical-align: inherit;">Promociones</font></font></a>
+                    </li>
+
+
+                </ul>
+
+
+                <div class="js-submenu sub-menu-3" style="display: none">
+
+                    <div>
+                        <div><i class="bi bi-laptop"></i> PORTÁTILES</div>
+                        <div>
+                            {% set allowed_categories = ['PCS', 'CHASIS', 'PORTÁTILES', 'PORTATILES','MONITORES','SISTEMAS DE REFRIGERACIÓN','MONITORES GAMING','ACCESORIOS SERVIDORES','CORPORATIVOS','PARTES PARA SERVIDORES','SOFTWARE DE SERVIDORES Y ALM'] %}
+
+                            {% for c in category %}
+                                {% if c|upper in allowed_categories %}
+                                    <div class="header-hover-a">
+                                        <i class="bi bi-box2-heart-fill text-primary"></i>
+                                        <a href="" class="category-btn-a">{{ c|capitalize }}</a>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <div>
+                        <div><i class="bi bi-inboxes-fill"></i> ACCESORIOS</div>
+                        <div>
+                            {% set allowed_categories = ['ACCESORIOS PORTÁTILES', 'AUDIFONOS Y DIADEMAS', 'MOUSES', 'MOUSE', 'PAD MOUSE', 'TECLADOS', 'TECLADO', 'KIT TECLADOS Y MOUSE', 'PARLANTES PARA PC','AUDIFONOS','DIADEMAS',' OTROS ACCESORIOS','VENTILADORES','ALL IN ONE CONSUMO'] %}
+
+                            {% for c in category %}
+                                {% if c|upper in allowed_categories %}
+                                    <div class="header-hover-a">
+                                        <i class="bi bi-box2-heart-fill text-primary"></i>
+                                        <a href="" class="category-btn-a">{{ c|capitalize }}</a>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <div>
+                        <div><i class="bi bi-printer-fill"></i> IMPRESORAS</div>
+                        <div>
+                            {% set allowed_categories = ['ESCANNERS DE DOCUMENTOS', 'TONERS', 'IMPRESORAS DE TONER NEGRO', 'IMPRESORAS DE TINTA', 'CARTUCHOS', 'IMPRESORAS DE PUNTO DE VENTA', 'LASER UNIFUN MONOCRO', 'MULTIFUN LASER MONOCRO', 'KIT MANTENIMIENTO'] %}
+
+                            {% for c in category %}
+                                {% if c|upper in allowed_categories %}
+                                    <div class="header-hover-a">
+                                        <i class="bi bi-box2-heart-fill text-primary"></i>
+                                        <a href="" class="category-btn-a">{{ c|capitalize }}</a>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <div>
+                        <div><i class="bi bi-controller"></i> JUEGOS</div>
+                        <div>
+                            {% set allowed_categories = ['CONTROLES', 'VIDEOJUEGOS', 'DIADEMAS_OLD', 'FUENTES DE PODER GAMING'] %}
+
+                            {% for c in category %}
+                                {% if c|upper in allowed_categories %}
+                                    <div class="header-hover-a">
+                                        <i class="bi bi-box2-heart-fill text-primary"></i>
+                                        <a href="" class="category-btn-a">{{ c|capitalize }}</a>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <div>
+                        <div><i class="bi bi-motherboard"></i> DISPOSITIVOS</div>
+                        <div>
+                            {% set allowed_categories = ['TABLETS', 'AIO'] %}
+
+                            {% for c in category %}
+                                {% if c|upper in allowed_categories %}
+                                    <div class="header-hover-a">
+                                        <i class="bi bi-box2-heart-fill text-primary"></i>
+                                        <a href="" class="category-btn-a">{{ c|capitalize }}</a>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+
+
+
+                    <div>
+                        <div><i class="bi bi-speaker-fill"></i> PARLANTES</div>
+                        <div>
+                            {% set allowed_parlantes = ['PARLANTES','BARRAS DE SONIDO','NETBOOK'] %}
+
+                            {% for c in category %}
+                                {% if c|upper in allowed_parlantes %}
+                                    <div class="header-hover-a">
+                                        <i class="bi bi-box2-heart-fill text-primary"></i>
+                                        <a href="" class="category-btn-a">{{ c|capitalize }}</a>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+    </header>
+
+
+    {% block content %}
+    {% endblock %}
+
+    <div class="footer">
+
+
+        <div>
+            <h3>Síguenos</h3>
+            <div class="redes">
+
+                <i class="bi bi-instagram"></i>
+                <i class="bi bi-linkedin"></i>
+                <i class="bi bi-whatsapp"></i>
+                <i class="bi bi-facebook"></i>
+
+            </div>
+            <p>
+                contacta asesor <br>
+                00000000
+            </p>
+        </div>
+
+
+        <div>
+            <h3>Nuestra compañía</h3>
+
+            <p>
+                Linea empresarial <br>
+                Como ser cliente <br>
+                Distribuidor <br>
+                Contacto <br>
+                Medios de pago <br>
+                Blog <br>
+            </p>
+        </div>
+
+
+        <div>
+            <h3>Políticas</h3>
+
+            <p>
+                Términos y condiciones <br>
+                Políticas de envío<br>
+                Políticas de privacidad <br>
+                Pago seguro <br>
+            </p>
+        </div>
+
+
+        <div>
+            <h3>Links destacados</h3>
+
+            <p>
+                Portátiles <br>
+                PCs de escritorio<br>
+                Servidores<br>
+                Software <br>
+            </p>
+        </div>
+
+    </div>
+
+
+</article>
+
+
+<script src="{{ getJs('componentsMenu.js') }}"></script>
+<script src="{{ getJs('componentsCart.js') }}"></script>
+<script src="{{ getJs('DepartmentsCities.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+</body>
+</html>

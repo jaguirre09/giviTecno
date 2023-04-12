@@ -1,0 +1,27 @@
+/*
+ * _Footer.scss
+ * Created by juandavidaguirrecamargo
+ * 09/03/2023 14:53:36
+ */
+
+
+
+.footer{
+  background-color: white;
+  position: relative;
+  z-index: 2;
+  color: rgba(10, 59, 156, 0.60);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 40px;
+
+  padding: 5%;
+
+  .redes{
+    .bi{
+      margin-right: 10px;
+      font-size: 30px;
+    }
+  }
+
+}
